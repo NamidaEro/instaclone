@@ -1,8 +1,10 @@
 import React from "react";
+import { InputGroup, FormControl, Button, Container, ButtonGroup, Navbar, Nav, Image} from 'react-bootstrap';
 
 function Login(props) {
-  console.log(props);
-  return <div>Login page</div>;
+    return (
+        <Image src="../img/login/login_phone.png" rounded />
+    );
 }
 
 export default Login;

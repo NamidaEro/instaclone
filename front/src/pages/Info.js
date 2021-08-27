@@ -1,8 +1,8 @@
 import React from "react";
 
-function Info(props) {
+function info(props) {
   console.log(props);
   return <div>Info page</div>;
 }
 
-export default Info;
+export default info;
