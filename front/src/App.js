@@ -1,7 +1,7 @@
 import React from "react";
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
-import { InputGroup, FormControl, Button, Container, ButtonGroup, Navbar, Nav } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap'
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+// import { InputGroup, FormControl, Button, Container, ButtonGroup, Navbar, Nav } from 'react-bootstrap';
+// import { LinkContainer } from 'react-router-bootstrap'
 // src/pages/index.js를 통해서 한번에 import 할 수 있도록 함
 import { Login, Info } from './pages';
 
