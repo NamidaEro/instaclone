@@ -1,39 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { Container, Image, Row, Col, Card, Button, InputGroup, FormControl } from 'react-bootstrap';
+import axios from 'axios';
 
 import './SignUp.css';
 
 function SignUp(props) {
     const [loginButton, setLoginButton] = useState(<Button disabled>가입</Button>);
-    const [txtEmail, setTxtemail] = useState("");
-    const [txtUserName, setTxtUserName] = useState("");
-    const [txtPassword, setTxtPassword] = useState("");
+    const [userInfo, setUserInfo] = useState({email:"", name:"", pwd:""});
     
-    const handlerEmailChange = (event) => {
+    const handlerEmailChange = async (event) => {
         let text = event.target.value;
-        // console.log(text);
-        setTxtemail(text);
+        userInfo.email = text;        
+        console.log(userInfo);
         checkTxtFieldNull();
     };
     
-    const handlerUserNameChange = (event) => {
+    const handlerUserNameChange = async (event) => {
         let text = event.target.value;
-        // console.log(text);
-        setTxtUserName(text);
+        userInfo.name = text;
+        console.log(userInfo);
         checkTxtFieldNull();
     };
     
-    const handlerPasswordChange = (event) => {
+    const handlerPasswordChange = async (event) => {
         let text = event.target.value;
-        // console.log(text);
-        setTxtPassword(text);
+        userInfo.pwd = text;
+        console.log(userInfo);
         checkTxtFieldNull();
+    };
+
+    const handlerSignUpButton = (event) => {
+        // console.log('email:%s username:%s password:%s', txtEmail, txtUserName, txtPassword);
     };
     
     const checkTxtFieldNull = () => {
-        if(0 < txtEmail.length && 0 < txtUserName.length && 0 < txtPassword.length) {
-            setLoginButton(<Button>가입</Button>);
+        // console.log('email:%s username:%s password:%s', userInfo.email, userInfo.name, userInfo.pwd);
+        if(0 < userInfo.email.length && 0 < userInfo.name.length && 0 < userInfo.pwd.length) {
+            setLoginButton(<Button onClick={handlerSignUpButton}>가입</Button>);
         } else {
             setLoginButton(<Button disabled>가입</Button>);
         }
