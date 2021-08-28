@@ -6,12 +6,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Login, Info, SignUp } from './pages';
 
 function App() {
-    
-    const handlerClick = (evnet) =>
-    {
-        // <Link to="/"></Link>
-    };
-
     return (
         <BrowserRouter>
             <Switch>

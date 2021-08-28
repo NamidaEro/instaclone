@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Container, Image, Row, Col, Card, Button, InputGroup, FormControl, Carousel } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap'
+import { Container, Row, Col, Card, Button, InputGroup, FormControl, Carousel } from 'react-bootstrap';
+// import { LinkContainer } from 'react-router-bootstrap'
 
 import './Login.css';
 
@@ -27,18 +27,21 @@ function Login(props) {
                                     <img
                                         className="d-block w-100"
                                         src="https://www.instagram.com/static/images/homepage/screenshot1.jpg/d6bf0c928b5a.jpg"
+                                        alt="first"
                                     />
                                 </Carousel.Item>
                                 <Carousel.Item>
                                     <img
                                         className="d-block w-100"
                                         src="https://www.instagram.com/static/images/homepage/screenshot2.jpg/6f03eb85463c.jpg"
+                                        alt="second"
                                     />
                                 </Carousel.Item>
                                 <Carousel.Item>
                                     <img
                                         className="d-block w-100"
                                         src="https://www.instagram.com/static/images/homepage/screenshot3.jpg/f0c687aa6ec2.jpg"
+                                        alt="third"
                                     />
                                 </Carousel.Item>
                             </Carousel>
