@@ -84,7 +84,7 @@ function Login(props) {
                                             </InputGroup>
                                         </Row>
                                         
-                                        <Row className="container-margin-b10">
+                                        <Row className="container-margin-b20">
                                             <div className="d-grid gap-2">
                                                 <Button variant="primary" href="/Info">
                                                 로그인

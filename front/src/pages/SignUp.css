@@ -14,6 +14,10 @@
     margin-bottom: 10px;
 }
 
+.container-margin-b20 {
+    margin-bottom: 20px;
+}
+
 .vvzhL {
     color: #8e8e8e;
     color: rgba(var(--f52,142,142,142),1);
