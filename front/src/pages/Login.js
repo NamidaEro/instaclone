@@ -25,21 +25,21 @@ function Login(props) {
                             <Carousel>
                                 <Carousel.Item>
                                     <img
-                                        className="d-block w-100"
+                                        className="phone_body_img_size"
                                         src="https://www.instagram.com/static/images/homepage/screenshot1.jpg/d6bf0c928b5a.jpg"
                                         alt="first"
                                     />
                                 </Carousel.Item>
                                 <Carousel.Item>
                                     <img
-                                        className="d-block w-100"
+                                        className="phone_body_img_size"
                                         src="https://www.instagram.com/static/images/homepage/screenshot2.jpg/6f03eb85463c.jpg"
                                         alt="second"
                                     />
                                 </Carousel.Item>
                                 <Carousel.Item>
                                     <img
-                                        className="d-block w-100"
+                                        className="phone_body_img_size"
                                         src="https://www.instagram.com/static/images/homepage/screenshot3.jpg/f0c687aa6ec2.jpg"
                                         alt="third"
                                     />
@@ -68,7 +68,7 @@ function Login(props) {
                                             <InputGroup>
                                                 <FormControl
                                                   placeholder="E-Mail"
-                                                  aria-label="E-Mail"
+                                                  aria-label="email"
                                                   aria-describedby="basic-addon1"
                                                 />
                                             </InputGroup>
@@ -87,19 +87,19 @@ function Login(props) {
                                         <Row className="container-margin-b10">
                                             <div className="d-grid gap-2">
                                                 <Button variant="primary" href="/Info">
-                                                Login
+                                                로그인
                                                 </Button>
                                             </div>
                                         </Row>
                                         
                                         <Row className="container-margin-b10">
-                                            <Col><p className="text-center"></p></Col>
-                                            <Col><p className="text-center">or</p></Col>
-                                            <Col><p className="text-center"></p></Col>
+                                            <Col><p className="s311c"></p></Col>
+                                            <Col><p className="text-center _0tv-g">또는</p></Col>
+                                            <Col><p className="s311c"></p></Col>
                                         </Row>
                                         
                                         <Row className="justify-content-md-center">
-                                            <Col className="text-center"><Button variant="link">Forgot Password?</Button></Col>
+                                            <Col className="text-center"><Button variant="link">비번 잊어버리는 멍청이?</Button></Col>
                                         </Row>
                                     </Container>
                                 </Col>
@@ -114,7 +114,7 @@ function Login(props) {
                             <Card.Body>
                                 <Row className="justify-content-md-center">
                                     <Col className="text-center">
-                                        Do you want? <Link to="/SignUp"><span className="text-primary">Sign up</span></Link>
+                                        SNS는 인생의 낭비다. <Link to="/SignUp"><span className="text-primary">가입</span></Link>
                                     </Col>
                                 </Row>
                             </Card.Body>
@@ -124,7 +124,7 @@ function Login(props) {
                     <Row className="justify-content-md-center">
                         <Col className="text-center">
                             <Row className="container-margin-t5">
-                                <p>Download the app. (Not Yet)</p>
+                                <p>다운로드 앱 (미지원)</p>
                             </Row>
                         </Col>
                     </Row>
