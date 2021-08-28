@@ -4,9 +4,10 @@ const router = express.Router();
 
 // const cookieParser = require('cookie-parser');
 // const bodyParser = require('body-parser');
+const session = require('express-session'), LocalStrategy = require('passport-local').Strategy;
 const passport = require('passport');
 const MySQLStore = require('express-mysql-session')(session);
-const session = require('express-session'), LocalStrategy = require('passport-local').Strategy;
+const mysql = require('mysql');
 
 // router.use(bodyParser.json());
 // router.use(bodyParser.urlencoded({ extended: false }));
@@ -17,13 +18,27 @@ router.use(session({
     store: new MySQLStore({
         host:'localhost',
         port: 3306,
-        user: 'root',
-        password: '1234',
-        database: 'todo'
+        user: 'yui',
+        password: '1q2w3e4r',
+        database: 'cinstagram'
     }),
-  }));
+}));
 router.use(passport.initialize());
 router.use(passport.session());
+
+const db = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'yui',
+    password : '1q2w3e4r',
+    database : 'cinstagram'
+});
+db.connect(function (err, param) {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log('mysql connected');
+    }
+});
 
 // const { MongoClient } = require('mongodb');
 // const uri = "mongodb+srv://admin:1q2w3e4r@clusterzero.ucszf.mongodb.net/cinstagram?retryWrites=true&w=majority";
