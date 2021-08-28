@@ -2,9 +2,21 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
+const cors = require('cors');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+
+let whitelist = ['https://cinstagram.run.goorm.io', 'https://cinback.run.goorm.io']
+
+let corsOptions = {
+  origin: function(origin, callback){
+  let isWhitelisted = whitelist.indexOf(origin) !== -1;
+  callback(null, isWhitelisted); 
+  // callback expects two parameters: error and options 
+  },
+  credentials:true
+}
 
 const app = express();
 
@@ -17,6 +29,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use( cors(corsOptions) );
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

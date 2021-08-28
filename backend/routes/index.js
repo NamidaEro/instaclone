@@ -62,9 +62,11 @@ db.connect(function (err, param) {
 // .catch(console.log);
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.post('/', function(req, res, next) {
     
-    res.render('index', { title: 'Express' });
+    console.log(req);
+    
+    res.send({ title: 'Express' });
 });
 
 module.exports = router;

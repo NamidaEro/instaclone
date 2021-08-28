@@ -9,21 +9,21 @@ function SignUp(props) {
     const [loginButton, setLoginButton] = useState(<Button disabled>가입</Button>);
     const [userInfo, setUserInfo] = useState({email:"", name:"", pwd:""});
     
-    const handlerEmailChange = async (event) => {
+    const handlerEmailChange = (event) => {
         let text = event.target.value;
         userInfo.email = text;        
         console.log(userInfo);
         checkTxtFieldNull();
     };
     
-    const handlerUserNameChange = async (event) => {
+    const handlerUserNameChange = (event) => {
         let text = event.target.value;
         userInfo.name = text;
         console.log(userInfo);
         checkTxtFieldNull();
     };
     
-    const handlerPasswordChange = async (event) => {
+    const handlerPasswordChange = (event) => {
         let text = event.target.value;
         userInfo.pwd = text;
         console.log(userInfo);
@@ -31,7 +31,12 @@ function SignUp(props) {
     };
 
     const handlerSignUpButton = (event) => {
-        // console.log('email:%s username:%s password:%s', txtEmail, txtUserName, txtPassword);
+        let url = 'https://cinback.run.goorm.io';
+        axios.post(url, userInfo)
+        .then(param => {
+            console.log(param);
+        })
+        .catch(console.log);
     };
     
     const checkTxtFieldNull = () => {
