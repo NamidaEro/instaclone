@@ -43,20 +43,20 @@ function SignUp(props) {
       <Container fluid>
           <Row className="login_header"></Row>
 
-          <Row className="justify-content-md-center container-margin-b10">
+          <Row className="justify-content-center container-margin-b10">
               <Card style={{ width: '22rem' }}>
                   <Row className="signup_header_3"></Row>
-                  <Row className="justify-content-md-center container-margin-b10">
+                  <Row className="justify-content-center container-margin-b10">
                       <Col md="auto"><Card.Img variant="top" src="img/login/instargram_letter.png" /></Col>
                   </Row>
 
-                  <Row className="justify-content-md-center container-margin-b10">
+                  <Row className="justify-content-center container-margin-b10">
                       <Col md="auto">
                           <h5 className="vvzhL"><strong>친구들과 함께 즐겨보셈</strong></h5>
                       </Col>
                   </Row>
 
-                  <Row className="justify-content-md-center container-margin-b20">
+                  <Row className="justify-content-center container-margin-b20">
                       <Col><p className="s311c"></p></Col>
                       <Col><p className="text-center _0tv-g">또는</p></Col>
                       <Col><p className="s311c"></p></Col>
@@ -112,7 +112,7 @@ function SignUp(props) {
               </Card>
           </Row>
 
-          <Row className="justify-content-md-center container-margin-b20">
+          <Row className="justify-content-center container-margin-b20">
               <Card style={{ width: '22rem' }}>
                   <Card.Body>
                       <Row className="justify-content-md-center">
@@ -124,7 +124,7 @@ function SignUp(props) {
               </Card>
           </Row>
 
-          <Row className="justify-content-md-center">
+          <Row className="justify-content-center">
               <Col className="text-center">
                   <Row className="container-margin-t5">
                       <p>다운로드 앱 (미지원)</p>
