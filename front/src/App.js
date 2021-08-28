@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 // import { InputGroup, FormControl, Button, Container, ButtonGroup, Navbar, Nav } from 'react-bootstrap';
 // import { LinkContainer } from 'react-router-bootstrap'
 // src/pages/index.js를 통해서 한번에 import 할 수 있도록 함
-import { Login, Info } from './pages';
+import { Login, Info, SignUp } from './pages';
 
 function App() {
     
@@ -15,8 +15,10 @@ function App() {
     return (
         <BrowserRouter>
             <Switch>
-                <Route exact path="/login" component={Login} />
                 <Route exact path="/" component={Login} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/Info" component={Info} />
+                <Route exact path="/SignUp" component={SignUp} />
             </Switch>
         </BrowserRouter>
     );

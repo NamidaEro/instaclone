@@ -37,3 +37,38 @@
 .login_header_9 {
     height: 9vmin;
 }
+
+.login_leftside {
+    background-image: url(login_phone.png);
+    min-width: 30%;
+    max-width: 30%;
+    /* background-size: 454px 618px;
+    flex: 0 0 auto;
+    width: 30%; */
+}
+
+.phone_header {
+    height: 98px;
+}
+
+.phone_body {
+    min-height: 618px;
+    min-width: 450px;
+}
+
+.container-margin-b5 {
+    margin-bottom: 5px;
+}
+
+.container-margin-b10 {
+    margin-bottom: 10px;
+}
+
+.container-margin-t5 {
+    margin-top: 5px;
+}
+
+
+.container-ccenter {
+    min-width: 30%;
+}
