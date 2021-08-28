@@ -68,22 +68,26 @@
     width: 244px;
 }
 
-.container-margin-b5 {
+.margin-b5 {
     margin-bottom: 5px;
 }
 
-.container-margin-b10 {
+.margin-b10 {
     margin-bottom: 10px;
 }
 
-.container-margin-b20 {
+.margin-b20 {
     margin-bottom: 20px;
 }
 
-.container-margin-t5 {
+.margin-t5 {
     margin-top: 5px;
 }
 
+.center-margin {
+    float: none;
+    margin:100 auto;
+}
 
 .container-ccenter {
     min-width: 30%;
@@ -119,4 +123,8 @@
     line-height: 15px;
     margin: 0 18px;
     text-transform: uppercase;
+}
+
+.ligwidth {
+    width: 350px;
 }
