@@ -56,6 +56,13 @@
     min-width: 450px;
 }
 
+.phone_body_img {
+    margin-left: 136px;
+    margin-right: 45px;
+    min-height: 433px;
+    min-width: 244px;
+}
+
 .container-margin-b5 {
     margin-bottom: 5px;
 }

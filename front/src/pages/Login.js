@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Container, Image, Row, Col, Card, Button, InputGroup, FormControl } from 'react-bootstrap';
+import { Container, Image, Row, Col, Card, Button, InputGroup, FormControl, Carousel } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap'
 
 import './Login.css';
+
+// https://www.instagram.com/static/images/homepage/screenshot2.jpg/6f03eb85463c.jpg
+// https://www.instagram.com/static/images/homepage/screenshot3.jpg/f0c687aa6ec2.jpg
 
 function Login(props) {
     return (
@@ -16,14 +19,36 @@ function Login(props) {
 
             <Row className="justify-content-md-center container-min-width-30">
                 <Col sm={{ span: 3 }} className="login_leftside phone_body">
-                    <Row className="phone_header">
-                        <Col className="phone_body"></Col>
+                    <Row className="phone_header"></Row>
+                    <Row>
+                        <Col className="phone_body_img">
+                            <Carousel>
+                                <Carousel.Item>
+                                    <img
+                                        className="d-block w-100"
+                                        src="https://www.instagram.com/static/images/homepage/screenshot1.jpg/d6bf0c928b5a.jpg"
+                                    />
+                                </Carousel.Item>
+                                <Carousel.Item>
+                                    <img
+                                        className="d-block w-100"
+                                        src="https://www.instagram.com/static/images/homepage/screenshot2.jpg/6f03eb85463c.jpg"
+                                    />
+                                </Carousel.Item>
+                                <Carousel.Item>
+                                    <img
+                                        className="d-block w-100"
+                                        src="https://www.instagram.com/static/images/homepage/screenshot3.jpg/f0c687aa6ec2.jpg"
+                                    />
+                                </Carousel.Item>
+                            </Carousel>
+                        </Col>
+                        
                     </Row>
                 </Col>
 
                 <Col sm={{ span: 3 }} className="phone_body">
-                    <Row className="login_header_5">
-                    </Row>
+                    <Row className="login_header_5"></Row>
                     
                     <Row className="justify-content-md-center container-margin-b10">
                         <Card style={{ width: '22rem' }}>
@@ -58,7 +83,7 @@ function Login(props) {
                                         
                                         <Row className="container-margin-b10">
                                             <div className="d-grid gap-2">
-                                                <Button variant="primary">
+                                                <Button variant="primary" href="/Info">
                                                 Login
                                                 </Button>
                                             </div>
