@@ -7,7 +7,6 @@ const router = express.Router();
 const session = require('express-session'), LocalStrategy = require('passport-local').Strategy;
 const passport = require('passport');
 const MySQLStore = require('express-mysql-session')(session);
-const mysql = require('mysql');
 
 // router.use(bodyParser.json());
 // router.use(bodyParser.urlencoded({ extended: false }));
@@ -25,20 +24,6 @@ router.use(session({
 }));
 router.use(passport.initialize());
 router.use(passport.session());
-
-const db = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'yui',
-    password : '1q2w3e4r',
-    database : 'cinstagram'
-});
-db.connect(function (err, param) {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log('mysql connected');
-    }
-});
 
 // const { MongoClient } = require('mongodb');
 // const uri = "mongodb+srv://admin:1q2w3e4r@clusterzero.ucszf.mongodb.net/cinstagram?retryWrites=true&w=majority";
@@ -61,12 +46,33 @@ db.connect(function (err, param) {
 // })
 // .catch(console.log);
 
+const sql = require('./sqlconnection.js');
+
 /* GET home page. */
-router.post('/', function(req, res, next) {
-    
-    console.log(req);
-    
-    res.send({ title: 'Express' });
+router.post('/', async function(req, res, next) {
+    let userinfo = req.body;
+
+    sql.executeQuery('select * from users')
+    .then(console.log)
+    .catch(console.log);
+
+    res.send(userinfo);
+});
+
+router.post('/Signup', function(req, res, next) {
+    let email = req.body.email;
+    let username = req.body.name;
+    let password = req.body.pwd;
+
+    let query = `call InsertUser('${email}','${username}','${password}')`;
+
+    console.log(query);
+
+    sql.executeQuery(query)
+    .then(qres => {
+        res.send(qres[0]);
+    })
+    .catch(res.send);
 });
 
 module.exports = router;

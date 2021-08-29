@@ -31,10 +31,11 @@ function SignUp(props) {
     };
 
     const handlerSignUpButton = (event) => {
-        let url = 'https://cinback.run.goorm.io';
+        let url = 'https://cinback.run.goorm.io/Signup';
         axios.post(url, userInfo)
         .then(param => {
             console.log(param);
+            props.history.push('/');
         })
         .catch(console.log);
     };
