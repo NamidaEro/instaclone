@@ -18,6 +18,10 @@
     margin-bottom: 20px;
 }
 
+.signup_button_width {
+    width: 100%;
+}
+
 .vvzhL {
     color: #8e8e8e;
     color: rgba(var(--f52,142,142,142),1);

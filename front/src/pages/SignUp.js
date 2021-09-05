@@ -6,75 +6,78 @@ import axios from 'axios';
 import './SignUp.css';
 
 function SignUp(props) {
-    const [loginButton, setLoginButton] = useState(<Button disabled>가입</Button>);
-    const [userInfo, setUserInfo] = useState({email:"", name:"", pwd:""});
+    const [loginButton, setLoginButton] = useState(<Button className="signup_button_width disabled">Sign Up</Button>);
+    const [userInfo, setUserInfo] = useState({email:"", username:"", pwd:""});
     
     const handlerEmailChange = (event) => {
         let text = event.target.value;
         userInfo.email = text;        
-        console.log(userInfo);
+        // console.log(userInfo);
         checkTxtFieldNull();
     };
     
     const handlerUserNameChange = (event) => {
         let text = event.target.value;
-        userInfo.name = text;
-        console.log(userInfo);
+        userInfo.username = text;
+        // console.log(userInfo);
         checkTxtFieldNull();
     };
     
     const handlerPasswordChange = (event) => {
         let text = event.target.value;
         userInfo.pwd = text;
-        console.log(userInfo);
+        // console.log(userInfo);
         checkTxtFieldNull();
     };
 
     const handlerSignUpButton = (event) => {
-        // let url = 'https://cinback.run.goorm.io/Signup';
-        // let url = 'https://cinback.run.goorm.io/login';
-        let url = 'https://cinback.run.goorm.io/users/login';
-
-        let info = {id: 'hello', pwd: 'world'};
-        console.log(info);
-        axios.defaults.withCredentials = true;
-        axios.post(url, info)
+        // console.log(event);
+        sendSignUp(userInfo)
+        .then(sendLogin)
         .then(param => {
             console.log(param);
+            props.history.push('/');
         })
         .catch(console.log);
+    };
 
-        // axios.post(url, info)
-        // .then(param => {
-        //     console.log(param);
-        //     props.history.push('/');
-        // })
-        // .catch(console.log);
-        // fetch(url, {
-        //     method: "post",
-        //     headers: {
-        //       "Content-Type": "application/json; charset=utf-8"
-        //     },
-        //     credentials: "same-origin",
-        //     body: JSON.stringify(info)
-        //   })
+    const sendSignUp = (event) => {
+        return new Promise((resolve, reject) => {
+            let url = 'https://cinback.run.goorm.io/users/signup';
+            console.log('sendSignUp:', event);
+            // axios.defaults.withCredentials = true;
+    
+            axios.post(url, event)
+            .then((param) => {
+                resolve(param.data[0]);
+            })
+            .catch(reject);
+        });
+    };
+
+    const sendLogin = (event) => {
+        return new Promise((resolve, reject) => {
+            let url = 'https://cinback.run.goorm.io/users/login';
+
+            let info = { email: event.email, username: event.username, pwd: event.pwd };
+            console.log('sendLogin:', info);
+
+            axios.post(url, info)
+            .then(resolve)
+            .catch(reject);
+        });
     };
     
     const checkTxtFieldNull = () => {
-        // console.log('email:%s username:%s password:%s', userInfo.email, userInfo.name, userInfo.pwd);
-        if(0 < userInfo.email.length && 0 < userInfo.name.length && 0 < userInfo.pwd.length) {
-            setLoginButton(<Button onClick={handlerSignUpButton}>가입</Button>);
+        console.log('email:%s username:%s password:%s', userInfo.email, userInfo.username, userInfo.pwd);
+        if(0 < userInfo.email.length && 0 < userInfo.username.length && 0 < userInfo.pwd.length) {
+        // if(0 < userInfo.email.length && 0 < userInfo.pwd.length) {
+            setLoginButton(<Button className="signup_button_width" onClick={handlerSignUpButton}>Sign Up</Button>);
         } else {
-            setLoginButton(<Button disabled>가입</Button>);
+            setLoginButton(<Button className="signup_button_width disabled">Sign Up</Button>);
         }
     }
 
-/* <form onSubmit={this.submitHandler}>
-<input type="text" name="id" placeholder="ID"></input><br></br>
-<input type="password" name="pwd" placeholder="PASSWORD"></input><br></br>
-<input type="submit" value="LOGIN"/>
-</form> */
-    
     return (
         <Container fluid>
             <Row className="login_header"></Row>
@@ -103,12 +106,15 @@ function SignUp(props) {
                             <Row className="container-margin-b10">
                                 <Form>
                                     <FloatingLabel controlId="floatingInput" label="Email" className="mb-3">
-                                        <Form.Control type="email" placeholder="Enter email" />
+                                        <Form.Control type="email" placeholder="Enter email" onChange={handlerEmailChange} />
+                                    </FloatingLabel>
+                                    <FloatingLabel controlId="floatingName" label="name" className="mb-3">
+                                        <Form.Control type="name" placeholder="Enter name" onChange={handlerUserNameChange} />
                                     </FloatingLabel>
                                     <FloatingLabel controlId="floatingPassword" label="password" className="mb-3">
-                                        <Form.Control type="password" placeholder="Enter password"></Form.Control>
+                                        <Form.Control type="password" placeholder="Enter password" onChange={handlerPasswordChange} />
                                     </FloatingLabel>
-                                    <Button onClick={handlerSignUpButton}>가입</Button>
+                                    {loginButton}
                                 </Form>
                                 
                             </Row>

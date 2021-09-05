@@ -31,7 +31,6 @@ const executeQuery = (query) => {
     });
 };
 
-module.exports = { 
-    getConnection,
-    executeQuery
+module.exports = {
+    executeQuery,
 }

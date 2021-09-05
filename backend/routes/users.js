@@ -8,6 +8,8 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const MySQLStore = require('express-mysql-session')(session);
 
+const { insertUserinfo, getUserinfo } = require('../dbmodule/querys');
+
 
 router.use(session({
     secret: 'secret',
@@ -40,15 +42,21 @@ passport.deserializeUser(function(param, done){
 
 passport.use('local2', new LocalStrategy(
     {
-        usernameField: 'id',
-        passwordField: 'pwd'
+        usernameField: 'email',
+        passwordField: 'pwd',
     },
     function(param1, param2, done) {
         console.log('LocalStrategy func', param1, param2);
-        
-        const user = {email:param1, pwd:param2};
-        // DB 검색후 done 호출
-        return done(null, user);
+
+        const user = { email:param1, pwd:param2 };
+
+        getUserinfo(user)
+        .then((queryResult) => {
+            return done(null, user);
+        })
+        .catch((err) => {
+            return done(null, false, {message:'failed'});
+        });
     }
 ));
 
@@ -59,27 +67,62 @@ router.get('/', function(req, res, next) {
 
 router.post('/login', function(req, res, next){
     console.log('post login: ', req.body);
-    passport.authenticate(
-        'local2',
-        {
-            successRedirect:'/user/success',
-            failureRedirect:'/user/failed',
-            failureFlash:true
-        }
-    )(req, res, next);
     // passport.authenticate(
     //     'local2',
-    //     function(param1, param2, param3) {
-    //         if(param1) console.log('param1:', param1);
-    //         if(param2) console.log('param2:', param2);
-    //         if(param3) console.log('param3:', param3);
-
-    //         req.logIn(param2, function(err){
-    //             if(err) next(err);
-    //             else res.send(param2);
-    //         });
+    //     {
+    //         successRedirect:'/user/success',
+    //         failureRedirect:'/user/failed',
+    //         failureFlash:true
     //     }
     // )(req, res, next);
+    passport.authenticate(
+        'local2',
+        function(param1, param2, param3) {
+            if(param1) {
+                console.log('param1:', param1);
+                res.send(param1);
+            }
+            
+            if(param2) {
+                console.log('param2:', param2);
+                req.logIn(param2, function(err){
+                    if(err) next(err);
+                    else res.send(param2);
+                });
+            } 
+            
+            if(param3) {
+                console.log('param3:', param3);
+                res.send(param3);
+            }
+        }
+    )(req, res, next);
+});
+
+router.post('/signup', function(req, res, next) {
+    let userinfo = {
+        email: req.body.email,
+        username: req.body.username,
+        pwd: req.body.pwd
+    };
+    // console.log(req.body);
+
+    insertUserinfo(userinfo)
+    .then((param) => {
+        console.log(param);
+        if(0 < param[0].length)
+        {
+            res.send(param[0]);
+        }
+        else
+        {
+            res.send('failed')
+        }
+        
+    })
+    .catch((err) => {
+        res.send(err);
+    });
 });
 
 router.get('/failed', forwardAuthenticated, function(req, res, next) {
