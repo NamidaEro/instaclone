@@ -32,16 +32,24 @@ function SignUp(props) {
 
     const handlerSignUpButton = (event) => {
         // let url = 'https://cinback.run.goorm.io/Signup';
-        let url = 'https://cinback.run.goorm.io/login';
+        // let url = 'https://cinback.run.goorm.io/login';
+        let url = 'https://cinback.run.goorm.io/users/login';
 
-        let info = {id: 'hello', pw: 'world'};
+        let info = {id: 'hello', pwd: 'world'};
         console.log(info);
+
         axios.post(url, info)
         .then(param => {
             console.log(param);
-            props.history.push('/');
         })
         .catch(console.log);
+
+        // axios.post(url, info)
+        // .then(param => {
+        //     console.log(param);
+        //     props.history.push('/');
+        // })
+        // .catch(console.log);
         // fetch(url, {
         //     method: "post",
         //     headers: {
@@ -93,16 +101,14 @@ function SignUp(props) {
                     <Row>
                         <Container>
                             <Row className="container-margin-b10">
-                                <Form onSubmit={handlerSignUpButton}>
+                                <Form>
                                     <FloatingLabel controlId="floatingInput" label="Email" className="mb-3">
                                         <Form.Control type="email" placeholder="Enter email" />
                                     </FloatingLabel>
                                     <FloatingLabel controlId="floatingPassword" label="password" className="mb-3">
                                         <Form.Control type="password" placeholder="Enter password"></Form.Control>
                                     </FloatingLabel>
-                                    <Button variant="primary" type="submit">
-                                    Submit
-                                    </Button>
+                                    <Button onClick={handlerSignUpButton}>가입</Button>
                                 </Form>
                                 
                             </Row>

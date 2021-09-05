@@ -3,6 +3,19 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors');
+
+
+let whitelist = ['https://cinstagram.run.goorm.io', 'https://cinback.run.goorm.io']
+
+let corsOptions = {
+  origin: function(origin, callback){
+  let isWhitelisted = whitelist.indexOf(origin) !== -1;
+  callback(null, isWhitelisted); 
+  // callback expects two parameters: error and options 
+  },
+  credentials:true
+}
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -18,6 +31,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors(corsOptions));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
