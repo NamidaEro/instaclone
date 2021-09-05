@@ -37,7 +37,7 @@ function SignUp(props) {
 
         let info = {id: 'hello', pwd: 'world'};
         console.log(info);
-
+        axios.defaults.withCredentials = true;
         axios.post(url, info)
         .then(param => {
             console.log(param);

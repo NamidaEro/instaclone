@@ -8,12 +8,17 @@ var cors = require('cors');
 
 let whitelist = ['https://cinstagram.run.goorm.io', 'https://cinback.run.goorm.io']
 
+// let corsOptions = {
+//   origin: function(origin, callback){
+//   let isWhitelisted = whitelist.indexOf(origin) !== -1;
+//   callback(null, isWhitelisted); 
+//   // callback expects two parameters: error and options 
+//   },
+//   credentials:true
+// }
+
 let corsOptions = {
-  origin: function(origin, callback){
-  let isWhitelisted = whitelist.indexOf(origin) !== -1;
-  callback(null, isWhitelisted); 
-  // callback expects two parameters: error and options 
-  },
+  origin: 'https://cinstagram.run.goorm.io',
   credentials:true
 }
 
