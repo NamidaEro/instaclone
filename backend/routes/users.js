@@ -9,6 +9,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const MySQLStore = require('express-mysql-session')(session);
 
 const { insertUserinfo, getUserinfo } = require('../dbmodule/querys');
+const { debug_log } = require('../config/debug');
 
 
 router.use(session({
@@ -31,12 +32,12 @@ router.use(passport.initialize());
 router.use(passport.session());
 
 passport.serializeUser(function(param, done){
-    console.log('serializeUser', param);
+    debug_log('serializeUser', param);
     done(null, param);
 });
 
 passport.deserializeUser(function(param, done){
-    console.log('deserializeUser', param);
+    debug_log('deserializeUser', param);
     done(null, param);
 });
 
@@ -46,7 +47,7 @@ passport.use('local2', new LocalStrategy(
         passwordField: 'pwd',
     },
     function(param1, param2, done) {
-        console.log('LocalStrategy func', param1, param2);
+        debug_log('LocalStrategy func', param1, param2);
 
         const user = { email:param1, pwd:param2 };
 
@@ -66,7 +67,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/login', function(req, res, next){
-    console.log('post login: ', req.body);
+    // console.log('post login: ', req.body);
     // passport.authenticate(
     //     'local2',
     //     {
@@ -79,12 +80,12 @@ router.post('/login', function(req, res, next){
         'local2',
         function(param1, param2, param3) {
             if(param1) {
-                console.log('param1:', param1);
+                // console.log('param1:', param1);
                 res.send(param1);
             }
             
             if(param2) {
-                console.log('param2:', param2);
+                // console.log('param2:', param2);
                 req.logIn(param2, function(err){
                     if(err) next(err);
                     else res.send(param2);
@@ -92,7 +93,7 @@ router.post('/login', function(req, res, next){
             } 
             
             if(param3) {
-                console.log('param3:', param3);
+                // console.log('param3:', param3);
                 res.send(param3);
             }
         }
@@ -109,7 +110,7 @@ router.post('/signup', function(req, res, next) {
 
     insertUserinfo(userinfo)
     .then((param) => {
-        console.log(param);
+        debug_log(param);
         if(0 < param[0].length)
         {
             res.send(param[0]);

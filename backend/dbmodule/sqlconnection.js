@@ -1,5 +1,6 @@
 const mysql = require('mysql');
 const config = require('./db_config.json');
+const { debug_log } = require('../config/debug');
 
 const pool = mysql.createPool(config);
 
@@ -9,6 +10,7 @@ const getConnection = () => {
             if(err) {
                 reject(err);
             } else {
+                // debug_log("Connectdb:", conn);
                 resolve(conn);
             }
         });
