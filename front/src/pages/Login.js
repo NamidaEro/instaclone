@@ -16,6 +16,7 @@ function Login(props) {
 
     useEffect(()=>{
         if(isOnLoad == "true") {
+            console.log('Init Auth');
             AuthCall();
         }
     })
@@ -79,7 +80,7 @@ function Login(props) {
     };
     
     const AuthCall = () =>{
-        console.log('AuthCall');
+        // console.log('AuthCall');
 
         if(isOnLoad) onLoad("false");
 

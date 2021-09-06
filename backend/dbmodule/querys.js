@@ -42,8 +42,27 @@ const getUserinfo = (param) => {
     });
 };
 
+const updateUserinfo = (param) => {
+    return new Promise((resolve, reject) => {
+        // console.log('getUserinfo', param);
+
+        let email = param.email;
+        let password = param.pwd;
+
+        let query = `update users set lastlogin_time = now() where email like '${email}' and pwd like '${password}';`;
+
+        // console.log('getUserinfo', query);
+
+        executeQuery(query)
+        .then(() => {
+            resolve('Userinfo updated');
+        })
+        .catch(reject);
+    });
+};
 
 module.exports = {
     insertUserinfo,
     getUserinfo,
+    updateUserinfo,
 }

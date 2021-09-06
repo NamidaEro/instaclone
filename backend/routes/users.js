@@ -8,7 +8,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const MySQLStore = require('express-mysql-session')(session);
 
-const { insertUserinfo, getUserinfo } = require('../dbmodule/querys');
+const { insertUserinfo, getUserinfo, updateUserinfo } = require('../dbmodule/querys');
 const { debug_log } = require('../config/debug');
 
 
@@ -32,16 +32,25 @@ router.use(passport.initialize());
 router.use(passport.session());
 
 passport.serializeUser(function(param, done){
-    debug_log('serializeUser', param);
+    // debug_log('serializeUser', param);
     done(null, param);
 });
 
 passport.deserializeUser(function(param, done){
-    debug_log('deserializeUser', param);
+    // debug_log('deserializeUser', param);
     
     getUserinfo(param)
     .then(res => {
-        done(null, param);
+        let info = { email: res[0].email, pwd: res[0].pwd };
+        // debug_log(info);
+        
+        updateUserinfo(info)
+        .then(()=>{
+            done(null, param);
+        })
+        .catch(err => {
+            done(err, null);
+        });
     })
     .catch(err => {
         done(err, null);
@@ -72,9 +81,8 @@ passport.use('local2', new LocalStrategy(
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    // debug_log(req);
-    // debug_log(req.isAuthenticated());
-    res.send({isAuthenticated:req.isAuthenticated()});
+    let isAuth = req.isAuthenticated();
+    res.send({isAuthenticated:isAuth});
 });
 
 router.post('/login', function(req, res, next){

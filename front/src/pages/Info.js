@@ -10,18 +10,22 @@ function Info(props) {
         .then(param => {
             props.history.push('/login');
         })
-        .catch(console.log);
+        .catch();
     };
 
     const Logout = function () {
         return new Promise((resolve, reject) => {
             let url = 'https://cinback.run.goorm.io/users/logout';
 
-            console.log('sendLogout:');
-
             axios.get(url, { withCredentials:true })
-            .then(resolve)
-            .catch(reject);
+            .then(()=>{
+                console.log('logout done');
+                resolve();
+            })
+            .catch(() => {
+                console.log('logout failed');
+                reject();
+            });
         });
     };
 

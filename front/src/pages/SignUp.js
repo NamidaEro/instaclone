@@ -9,10 +9,6 @@ function SignUp(props) {
     const [loginButton, setLoginButton] = useState(<Button className="signup_button_width disabled">Sign Up</Button>);
     const [userInfo, setUserInfo] = useState({email:"", username:"", pwd:""});
 
-    useEffect(() => {
-        console.log('useEffect');
-    });
-    
     const handlerEmailChange = (event) => {
         let text = event.target.value;
         userInfo.email = text;        
@@ -37,7 +33,7 @@ function SignUp(props) {
     const handlerSignUpButton = (event) => {
         // console.log(event);
         sendSignUp(userInfo)
-        .then(sendLogin)
+        // .then(sendLogin)
         .then(param => {
             console.log(param);
             props.history.push('/');
