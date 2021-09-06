@@ -12,6 +12,13 @@ import './Login.css';
 function Login(props) {
     const [userInfo, setUserInfo] = useState({email:"", username:"", pwd:""});
     const [loginButton, setLoginButton] = useState(<Button variant="primary disabled">Sign in</Button>);
+    const [isOnLoad, onLoad] = useState("true");
+
+    useEffect(()=>{
+        if(isOnLoad == "true") {
+            AuthCall();
+        }
+    })
 
     const handlerEmailChange = (event) => {
         let text = event.target.value;
@@ -70,21 +77,12 @@ function Login(props) {
             .catch(reject);
         });
     };
-
-    const sendLogout = (event) => {
-        return new Promise((resolve, reject) => {
-            let url = 'https://cinback.run.goorm.io/users/logout';
-
-            console.log('sendLogout:');
-
-            axios.get(url, { withCredentials:true })
-            .then(resolve)
-            .catch(reject);
-        });
-    }
-
+    
     const AuthCall = () =>{
         console.log('AuthCall');
+
+        if(isOnLoad) onLoad("false");
+
         let url = 'https://cinback.run.goorm.io/users/';
         axios.get(url, { withCredentials:true })
         .then(AuthCheck)
@@ -96,6 +94,7 @@ function Login(props) {
         console.log(isSuccess);
         if(isSuccess) {
             // success
+            props.history.push('/Info');
         } else {
             // failed
         }
@@ -183,7 +182,7 @@ function Login(props) {
                                             </Row>
 
                                             <Row className="justify-content-xs-center">
-                                                <Col className="text-center"><Button variant="link" onClick={sendLogout}>비번 잊어버리는 멍청이?</Button></Col>
+                                                <Col className="text-center"><Button variant="link">비번 잊어버리는 멍청이?</Button></Col>
                                             </Row>
                                             
                                         </Col>
