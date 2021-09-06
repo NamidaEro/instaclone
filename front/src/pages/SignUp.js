@@ -69,7 +69,7 @@ function SignUp(props) {
     };
     
     const checkTxtFieldNull = () => {
-        console.log('email:%s username:%s password:%s', userInfo.email, userInfo.username, userInfo.pwd);
+        // console.log('email:%s username:%s password:%s', userInfo.email, userInfo.username, userInfo.pwd);
         if(0 < userInfo.email.length && 0 < userInfo.username.length && 0 < userInfo.pwd.length) {
         // if(0 < userInfo.email.length && 0 < userInfo.pwd.length) {
             setLoginButton(<Button className="signup_button_width" onClick={handlerSignUpButton}>Sign Up</Button>);
