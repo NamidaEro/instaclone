@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import { Container, Row, Col, Card, Button, InputGroup, FloatingLabel, Form } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, FloatingLabel, Form } from 'react-bootstrap';
 import axios from 'axios';
 
 import './SignUp.css';
