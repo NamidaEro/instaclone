@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import { Container, Image, Row, Col, Card, Button, InputGroup, FloatingLabel, Form } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, InputGroup, FloatingLabel, Form } from 'react-bootstrap';
 import axios from 'axios';
 
 import './SignUp.css';
@@ -8,6 +8,10 @@ import './SignUp.css';
 function SignUp(props) {
     const [loginButton, setLoginButton] = useState(<Button className="signup_button_width disabled">Sign Up</Button>);
     const [userInfo, setUserInfo] = useState({email:"", username:"", pwd:""});
+
+    useEffect(() => {
+        console.log('useEffect');
+    });
     
     const handlerEmailChange = (event) => {
         let text = event.target.value;

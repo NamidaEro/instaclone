@@ -38,7 +38,14 @@ passport.serializeUser(function(param, done){
 
 passport.deserializeUser(function(param, done){
     debug_log('deserializeUser', param);
-    done(null, param);
+    
+    getUserinfo(param)
+    .then(res => {
+        done(null, param);
+    })
+    .catch(err => {
+        done(err, null);
+    });
 });
 
 passport.use('local2', new LocalStrategy(
@@ -53,9 +60,11 @@ passport.use('local2', new LocalStrategy(
 
         getUserinfo(user)
         .then((queryResult) => {
+            debug_log('success');
             return done(null, user);
         })
         .catch((err) => {
+            debug_log(err);
             return done(null, false, {message:'failed'});
         });
     }
@@ -63,41 +72,42 @@ passport.use('local2', new LocalStrategy(
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    res.send('?');
+    // debug_log(req);
+    // debug_log(req.isAuthenticated());
+    res.send({isAuthenticated:req.isAuthenticated()});
 });
 
 router.post('/login', function(req, res, next){
-    // console.log('post login: ', req.body);
-    // passport.authenticate(
-    //     'local2',
-    //     {
-    //         successRedirect:'/user/success',
-    //         failureRedirect:'/user/failed',
-    //         failureFlash:true
-    //     }
-    // )(req, res, next);
-    passport.authenticate(
-        'local2',
-        function(param1, param2, param3) {
-            if(param1) {
-                // console.log('param1:', param1);
-                res.send(param1);
+    if(req.isAuthenticated()) {
+        res.send({isAuthenticated:req.isAuthenticated()});
+    } else {
+        passport.authenticate(
+            'local2',
+            function(param1, param2, param3) {
+                if(param1) {
+                    debug_log('param1:', param1);
+                    res.send(param1);
+                }
+                
+                if(param2) {
+                    debug_log('param2:', param2);
+
+                    req.logIn(param2, function(err){
+                        if(err) next(err);
+                        else {
+                            // debug_log(req);
+                            res.send(param2);
+                        }
+                    });
+                } 
+                
+                if(param3) {
+                    debug_log('param3:', param3);
+                    res.send(param3);
+                }
             }
-            
-            if(param2) {
-                // console.log('param2:', param2);
-                req.logIn(param2, function(err){
-                    if(err) next(err);
-                    else res.send(param2);
-                });
-            } 
-            
-            if(param3) {
-                // console.log('param3:', param3);
-                res.send(param3);
-            }
-        }
-    )(req, res, next);
+        )(req, res, next);
+    }
 });
 
 router.post('/signup', function(req, res, next) {
@@ -124,6 +134,11 @@ router.post('/signup', function(req, res, next) {
     .catch((err) => {
         res.send(err);
     });
+});
+
+router.get('/logout', function(req, res, next) {
+    req.logout();
+    res.send('logout');
 });
 
 router.get('/failed', forwardAuthenticated, function(req, res, next) {
