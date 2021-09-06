@@ -39,7 +39,7 @@ function Login(props) {
         .then(param => {
             if(param.data.hasOwnProperty('isAuthenticated')) {
                 // success
-                console.log(param.data);
+                AuthCheck(param);
             } else {
                 AuthCall();
             }
@@ -87,14 +87,18 @@ function Login(props) {
         console.log('AuthCall');
         let url = 'https://cinback.run.goorm.io/users/';
         axios.get(url, { withCredentials:true })
-        .then(param =>{
-            console.log(param);
-        })
+        .then(AuthCheck)
         .catch(console.log);
     }
 
-    const AuthSuccess = () => {
-        // Success
+    const AuthCheck = (param) => {
+        let isSuccess = param.data.isAuthenticated;
+        console.log(isSuccess);
+        if(isSuccess) {
+            // success
+        } else {
+            // failed
+        }
     };
 
     return (

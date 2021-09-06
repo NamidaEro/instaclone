@@ -79,9 +79,10 @@ router.get('/', function(req, res, next) {
 
 router.post('/login', function(req, res, next){
     if(req.isAuthenticated()) {
-        res.send({isAuthenticated:req.isAuthenticated()});
-    } else {
-        passport.authenticate(
+        req.logout();
+    }
+    
+    passport.authenticate(
             'local2',
             function(param1, param2, param3) {
                 if(param1) {
@@ -107,7 +108,6 @@ router.post('/login', function(req, res, next){
                 }
             }
         )(req, res, next);
-    }
 });
 
 router.post('/signup', function(req, res, next) {
