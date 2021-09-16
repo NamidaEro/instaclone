@@ -15,7 +15,7 @@ function Login(props) {
     const [isOnLoad, onLoad] = useState("true");
 
     useEffect(()=>{
-        if(isOnLoad == "true") {
+        if(isOnLoad === "true") {
             console.log('Init Auth');
             AuthCall();
         }
