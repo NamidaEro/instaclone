@@ -6,7 +6,7 @@ var logger = require('morgan');
 var cors = require('cors');
 
 
-// let whitelist = ['http://rkseksgkrns.shop:3000', 'http://rkseksgkrns.shop:3001']
+let whitelist = ['https://rkseksgkrns.shop', 'https://rkseksgkrns.shop:3000', 'http://rkseksgkrns.shop:3000'];
 
 // let corsOptions = {
 //   origin: function(origin, callback){
@@ -18,7 +18,13 @@ var cors = require('cors');
 // }
 
 let corsOptions = {
-  origin: 'http://rkseksgkrns.shop:3000',
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not Allowed Origin!"));
+    }
+  },
   credentials:true
 }
 

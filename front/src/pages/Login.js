@@ -67,7 +67,7 @@ function Login(props) {
 
     const sendLogin = (event) => {
         return new Promise((resolve, reject) => {
-            let url = 'http://rkseksgkrns.shop:3001/users/login';
+            let url = 'https://rkseksgkrns.shop:3001/users/login';
 
             let info = { email: event.email, username: event.username, pwd: event.pwd };
             // let info = { email: 'hongswin88@gmail.com', pwd: '1q2w3e4r' };
