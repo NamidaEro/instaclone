@@ -6,7 +6,7 @@ var logger = require('morgan');
 var cors = require('cors');
 
 
-let whitelist = ['https://cinstagram.run.goorm.io', 'https://cinback.run.goorm.io']
+// let whitelist = ['http://rkseksgkrns.shop:3000', 'http://rkseksgkrns.shop:3001']
 
 // let corsOptions = {
 //   origin: function(origin, callback){
@@ -18,7 +18,7 @@ let whitelist = ['https://cinstagram.run.goorm.io', 'https://cinback.run.goorm.i
 // }
 
 let corsOptions = {
-  origin: 'https://cinstagram.run.goorm.io',
+  origin: 'http://rkseksgkrns.shop:3000',
   credentials:true
 }
 

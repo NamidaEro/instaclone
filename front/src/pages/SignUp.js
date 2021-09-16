@@ -43,12 +43,13 @@ function SignUp(props) {
 
     const sendSignUp = (event) => {
         return new Promise((resolve, reject) => {
-            let url = 'https://cinback.run.goorm.io/users/signup';
+            let url = 'http://rkseksgkrns.shop:3001/users/signup';
             console.log('sendSignUp:', event);
             // axios.defaults.withCredentials = true;
     
             axios.post(url, event)
             .then((param) => {
+                console.log(param);
                 resolve(param.data[0]);
             })
             .catch(reject);
@@ -57,7 +58,7 @@ function SignUp(props) {
 
     const sendLogin = (event) => {
         return new Promise((resolve, reject) => {
-            let url = 'https://cinback.run.goorm.io/users/login';
+            let url = 'http://rkseksgkrns.shop:3001/users/login';
 
             let info = { email: event.email, username: event.username, pwd: event.pwd };
             console.log('sendLogin:', info);

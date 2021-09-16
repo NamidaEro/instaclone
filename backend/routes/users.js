@@ -11,6 +11,15 @@ const MySQLStore = require('express-mysql-session')(session);
 const { insertUserinfo, getUserinfo, updateUserinfo } = require('../dbmodule/querys');
 const { debug_log } = require('../config/debug');
 
+const options = {
+    host: "localhost",
+    port: 3306,
+    user: "yui",
+    password: "1q2w3e4r",
+    database: "cinstagram",
+};
+const sessionStore = new MySQLStore(options);
+// console.log(sessionStore);
 
 router.use(session({
     secret: 'secret',
@@ -19,13 +28,7 @@ router.use(session({
     cookie: {
         secure:false
     },
-    store: new MySQLStore({
-        host:'localhost',
-        port: 3306,
-        user: 'yui',
-        password: '1q2w3e4r',
-        database: 'cinstagram'
-    }),
+    store: sessionStore,
 }));
 
 router.use(passport.initialize());
@@ -81,6 +84,7 @@ passport.use('local2', new LocalStrategy(
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
+    // console.log("?");
     let isAuth = req.isAuthenticated();
     res.send({isAuthenticated:isAuth});
 });
@@ -131,15 +135,18 @@ router.post('/signup', function(req, res, next) {
         debug_log(param);
         if(0 < param[0].length)
         {
+            // console.log(param[0]);
             res.send(param[0]);
         }
         else
         {
+            console.log('failed');
             res.send('failed')
         }
         
     })
     .catch((err) => {
+        // console.log(err);
         res.send(err);
     });
 });

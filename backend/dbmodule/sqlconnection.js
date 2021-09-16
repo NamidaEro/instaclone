@@ -8,6 +8,7 @@ const getConnection = () => {
     return new Promise((resolve, reject) => {
         pool.getConnection(function(err, conn) {
             if(err) {
+                console.log(err);
                 reject(err);
             } else {
                 // debug_log("Connectdb:", conn);

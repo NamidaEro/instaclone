@@ -67,11 +67,11 @@ function Login(props) {
 
     const sendLogin = (event) => {
         return new Promise((resolve, reject) => {
-            let url = 'https://cinback.run.goorm.io/users/login';
+            let url = 'http://rkseksgkrns.shop:3001/users/login';
 
             let info = { email: event.email, username: event.username, pwd: event.pwd };
             // let info = { email: 'hongswin88@gmail.com', pwd: '1q2w3e4r' };
-            // console.log('sendLogin:', info);
+            console.log('sendLogin:', info);
 
             axios.post(url, info, { withCredentials:true })
             .then(resolve)
@@ -84,7 +84,7 @@ function Login(props) {
 
         if(isOnLoad) onLoad("false");
 
-        let url = 'https://cinback.run.goorm.io/users/';
+        let url = 'http://rkseksgkrns.shop:3001/users/';
         axios.get(url, { withCredentials:true })
         .then(AuthCheck)
         .catch(console.log);

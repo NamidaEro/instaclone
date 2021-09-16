@@ -15,7 +15,7 @@ function Info(props) {
 
     const Logout = function () {
         return new Promise((resolve, reject) => {
-            let url = 'https://cinback.run.goorm.io/users/logout';
+            let url = 'http://rkseksgkrns.shop:3001/users/logout';
 
             axios.get(url, { withCredentials:true })
             .then(()=>{
