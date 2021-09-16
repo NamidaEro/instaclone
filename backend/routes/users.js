@@ -92,6 +92,7 @@ router.get('/', function(req, res, next) {
 router.post('/login', function(req, res, next){
     if(req.isAuthenticated()) {
         req.logout();
+        debug_log('logout:');
     }
     
     passport.authenticate(
